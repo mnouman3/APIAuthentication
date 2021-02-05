@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SECURITY_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ClientMaster">
+    <Key>
+      <PropertyRef Name="ClientKeyId" />
+    </Key>
+    <Property Name="ClientKeyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClientSecret" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="RefreshTokenLifeTime" Type="Int32" Nullable="false" />
+    <Property Name="AllowedOrigin" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RefreshToken">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ClientID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IssuedTime" Type="DateTime" Precision="3" />
+    <Property Name="ExpiredTime" Type="DateTime" Precision="3" />
+    <Property Name="ProtectedTicket" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserMaster">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserRoles" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="UserEmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="SECURITY_DBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ClientMasters" EntityType="Self.ClientMaster" />
+    <EntitySet Name="RefreshTokens" EntityType="Self.RefreshToken" />
+    <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
+  </EntityContainer>
+</Schema>
